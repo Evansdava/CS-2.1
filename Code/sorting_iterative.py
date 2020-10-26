@@ -60,8 +60,8 @@ def selection_sort(items):
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?
+    Running time: O(n**2) It can iterate through all elements on each loop
+    Memory usage: O(1) Sorting is done in place, only ints declared
     """
     # Loop through the whole array
     for i in range(1, len(items)):
