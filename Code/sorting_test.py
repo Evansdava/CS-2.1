@@ -83,18 +83,18 @@ class IntegerSortTest(unittest.TestCase):
 
     def test_sort_on_empty_list(self):
         items = []
-        sort(items)
+        items = sort(items)
         assert items == []  # List should not be changed
 
     def test_sort_on_small_lists_of_integers(self):
         items1 = [3]
-        sort(items1)
+        items1 = sort(items1)
         assert items1 == [3]  # List should not be changed
         items2 = [5, 3]
-        sort(items2)
+        items2 = sort(items2)
         assert items2 == [3, 5]  # List should be in sorted order
         items3 = [5, 7, 3]
-        sort(items3)
+        items3 = sort(items3)
         assert items3 == [3, 5, 7]
         # TODO: Write more test cases with assert equal list statements
         # You'll need a lot more than this to test sorting algorithm robustness
@@ -102,16 +102,16 @@ class IntegerSortTest(unittest.TestCase):
 
     def test_sort_on_small_lists_of_integers_with_duplicates(self):
         items1 = [3, 3]
-        sort(items1)
+        items1 = sort(items1)
         assert items1 == [3, 3]  # List should not be changed
         items2 = [3, 5, 3]
-        sort(items2)
+        items2 = sort(items2)
         assert items2 == [3, 3, 5]  # List should be in sorted order
         items3 = [5, 5, 3, 5, 3]
-        sort(items3)
+        items3 = sort(items3)
         assert items3 == [3, 3, 5, 5, 5]
         items4 = [7, 5, 3, 7, 5, 7, 5, 3, 7]
-        sort(items4)
+        items4 = sort(items4)
         assert items4 == [3, 3, 5, 5, 5, 7, 7, 7, 7]
         # TODO: Create lists of integers with many duplicate values
         # TODO: Write more test cases with assert equal list statements
@@ -122,38 +122,38 @@ class IntegerSortTest(unittest.TestCase):
         # Generate list of 10 random integers from range [1...20]
         items1 = random_ints(10, 1, 20)
         sorted_items1 = sorted(items1)  # Create a copy of list in sorted order
-        sort(items1)  # Call mutative sort function to sort list items in place
+        items1 = sort(items1)  # Call mutative sort function to sort list items in place
         assert items1 == sorted_items1
 
         # Generate list of 20 random integers from range [1...50]
         items2 = random_ints(20, 1, 50)
         sorted_items2 = sorted(items2)  # Copy
-        sort(items2)  # Mutate
+        items2 = sort(items2)  # Mutate
         assert items2 == sorted_items2
 
         # Generate list of 30 random integers from range [1...100]
         items3 = random_ints(30, 1, 100)
         sorted_items3 = sorted(items3)  # Copy
-        sort(items3)  # Mutate
+        items3 = sort(items3)  # Mutate
         assert items3 == sorted_items3
 
     def test_sort_on_lists_of_random_integers_with_duplicates(self):
         # Generate list of 20 random integers from range [1...10]
         items1 = random_ints(20, 1, 10)
         sorted_items1 = sorted(items1)  # Create a copy of list in sorted order
-        sort(items1)  # Call mutative sort function to sort list items in place
+        items1 = sort(items1)  # Call mutative sort function to sort list items in place
         assert items1 == sorted_items1
 
         # Generate list of 50 random integers from range [1...20]
         items2 = random_ints(50, 1, 20)
         sorted_items2 = sorted(items2)  # Copy
-        sort(items2)  # Mutate
+        items2 = sort(items2)  # Mutate
         assert items2 == sorted_items2
 
         # Generate list of 100 random integers from range [1...30]
         items3 = random_ints(100, 1, 30)
         sorted_items3 = sorted(items3)  # Copy
-        sort(items3)  # Mutate
+        items3 = sort(items3)  # Mutate
         assert items3 == sorted_items3
 
 
@@ -161,13 +161,13 @@ class StringSortTest(unittest.TestCase):
 
     def test_sort_on_small_lists_of_strings(self):
         items1 = ['A']
-        sort(items1)
+        items1 = sort(items1)
         assert items1 == ['A']  # List should not be changed
         items2 = ['B', 'A']
-        sort(items2)
+        items2 = sort(items2)
         assert items2 == ['A', 'B']  # List should be in sorted order
         items3 = ['B', 'C', 'A']
-        sort(items3)
+        items3 = sort(items3)
         assert items3 == ['A', 'B', 'C']
         # TODO: Write more test cases with assert equal list statements
         # You'll need a lot more than this to test sorting algorithm robustness
@@ -176,13 +176,13 @@ class StringSortTest(unittest.TestCase):
     def test_sort_on_fish_book_title(self):
         items = 'one fish two fish red fish blue fish'.split()
         sorted_items = sorted(items)  # Create a copy of list in sorted order
-        sort(items)  # Call mutative sort function to sort list items in place
+        items = sort(items)  # Call mutative sort function to sort list items in place
         assert items == sorted_items
 
     def test_sort_on_seven_dwarf_names(self):
         items = 'Doc Grumpy Happy Sleepy Bashful Sneezy Dopey'.split()
         sorted_items = sorted(items)  # Copy
-        sort(items)  # Mutate
+        items = sort(items)  # Mutate
         assert items == sorted_items
 
 
@@ -215,7 +215,7 @@ def get_sort_function():
 
 
 # If using PyTest, change this variable to the sort function you want to test
-sort = selection_sort
+sort = merge_sort
 
 
 if __name__ == '__main__':

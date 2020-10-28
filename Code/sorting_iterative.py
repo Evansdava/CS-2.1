@@ -40,7 +40,8 @@ def bubble_sort(items):
 
         # If there were no swaps, list is already sorted
         if not swapped:
-            return
+            return items
+    return items
 
 
 def selection_sort(items):
@@ -55,6 +56,7 @@ def selection_sort(items):
         ind = items.index(min(items[i:]), i)
         # Switch it with the current index
         items[ind], items[i] = items[i], items[ind]
+    return items
 
 
 def insertion_sort(items):
@@ -71,3 +73,4 @@ def insertion_sort(items):
         while items[j] < items[j - 1] and j > 0:
             items[j], items[j - 1] = items[j - 1], items[j]
             j -= 1
+    return items
