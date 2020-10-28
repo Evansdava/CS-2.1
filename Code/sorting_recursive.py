@@ -4,21 +4,21 @@
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?
+    Running time: O(n) Passes over each element once
+    Memory usage: O(n) Makes a new list for all the elements
     """
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
     ind_1, ind_2 = 0, 0
     new_list = []
+    # Repeat until one list is empty
     while ind_1 <= len(items1) - 1 and ind_2 <= len(items2) - 1:
+        # Find minimum item in both lists and append it to new list
         if items1[ind_1] <= items2[ind_2]:
             new_list.append(items1[ind_1])
             ind_1 += 1
         else:
             new_list.append(items2[ind_2])
             ind_2 += 1
+    # Append remaining items in non-empty list to new list
     if ind_1 <= len(items1) - 1:
         new_list.extend(items1[ind_1:])
     elif ind_2 <= len(items2) - 1:
@@ -41,18 +41,18 @@ def split_sort_merge(items):
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?
+    Running time: O(n log(n)) Passes over each element log(n) times
+    Memory usage: O(n) It creates a new list to hold all the elements
     """
-    # TODO: Check if list is so small it's already sorted (base case)
-    # TODO: Split items list into approximately equal halves
-    # TODO: Sort each half by recursively calling merge sort
-    # TODO: Merge sorted halves into one list in sorted order
+    # Check if list is so small it's already sorted (base case)
     if len(items) <= 1:
         return items
+    # Split items list into approximately equal halves
     left = items[:len(items) // 2]
     right = items[len(items) // 2:]
 
+    # Sort each half by recursively calling merge sort
+    # Merge sorted halves into one list in sorted order
     return merge(merge_sort(left), merge_sort(right))
 
 
