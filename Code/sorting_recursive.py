@@ -59,32 +59,33 @@ def merge_sort(items):
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (The middle item) from
+    `[low...high]` by choosing a pivot (The last item) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?
+    Running time: O(n) as it loops over each element once
+    Memory usage: O(1) as it declares a constant number of variables
     """
-    # TODO: Choose a pivot any way and document your method in docstring above
-    # TODO: Loop through all items in range [low...high]
-    # TODO: Move items less than pivot into front of range [low...p-1]
-    # TODO: Move items greater than pivot into back of range [p+1...high]
-    # TODO: Move pivot item into final position [p] and return index p
+    # Last item is pivot
     pivot = items[high]
 
-    i = low
-    j = high - 1
+    i = low  # Left counter
+    j = high - 1  # Right counter
 
+    # Loop until left meets right
     while i < j:
+        # Count down until finding a smaller item
         if items[j] >= pivot:
             j -= 1
+        # Count up until finding a larger item
+        if items[i] < pivot:
+            i += 1
+        # If two items are in the wrong place, switch them
         if items[i] >= pivot and items[j] < pivot:
             items[i], items[j] = items[j], items[i]
             j -= 1
             i += 1
-        if items[i] < pivot:
-            i += 1
 
+    # Put pivot into the right place
     if items[i] < pivot:
         i += 1
     items[i], items[high] = items[high], items[i]
@@ -94,27 +95,22 @@ def partition(items, low, high):
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    TODO: Best case running time: ??? Why and under what conditions?
-    TODO: Worst case running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?
+    Best case running time: O(1) if list is only one element
+    Worst case running time: O(n log n) as it repeatedly splits the array and
+                             iterates over each split
+    Memory usage: O(log n) As each recursion defines set variables
     """
     # Check if high and low range bounds have default values (not given)
     if low is None and high is None:
         low = 0
         high = len(items) - 1
     # Check if list or range is so small it's already sorted (base case)
-    print("Low", low, "High", high)
     if len(items[low:high + 1]) == 1:
         return items
     if low < high:
         # Partition items in-place around a pivot and get index of pivot
         p = partition(items, low, high)
-        print("p", p)
 
         # Sort each sublist range by recursively calling quick sort
-        print(items)
-        print("Sorting low")
         quick_sort(items, low, p - 1)
-        print("Sorting high")
         quick_sort(items, p + 1, high)
-        print("Returning", items[low:high + 1])
