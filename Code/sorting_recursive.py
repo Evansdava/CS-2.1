@@ -53,12 +53,13 @@ def merge_sort(items):
 
     # Sort each half by recursively calling merge sort
     # Merge sorted halves into one list in sorted order
-    return merge(merge_sort(left), merge_sort(right))
+    items[:] = merge(merge_sort(left), merge_sort(right))
+    return items
 
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
+    `[low...high]` by choosing a pivot (The middle item) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
     TODO: Running time: ??? Why and under what conditions?
@@ -69,6 +70,25 @@ def partition(items, low, high):
     # TODO: Move items less than pivot into front of range [low...p-1]
     # TODO: Move items greater than pivot into back of range [p+1...high]
     # TODO: Move pivot item into final position [p] and return index p
+    pivot = items[high]
+
+    i = low
+    j = high - 1
+
+    while i < j:
+        if items[j] >= pivot:
+            j -= 1
+        if items[i] >= pivot and items[j] < pivot:
+            items[i], items[j] = items[j], items[i]
+            j -= 1
+            i += 1
+        if items[i] < pivot:
+            i += 1
+
+    if items[i] < pivot:
+        i += 1
+    items[i], items[high] = items[high], items[i]
+    return i
 
 
 def quick_sort(items, low=None, high=None):
@@ -78,7 +98,23 @@ def quick_sort(items, low=None, high=None):
     TODO: Worst case running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?
     """
-    # TODO: Check if high and low range bounds have default values (not given)
-    # TODO: Check if list or range is so small it's already sorted (base case)
-    # TODO: Partition items in-place around a pivot and get index of pivot
-    # TODO: Sort each sublist range by recursively calling quick sort
+    # Check if high and low range bounds have default values (not given)
+    if low is None and high is None:
+        low = 0
+        high = len(items) - 1
+    # Check if list or range is so small it's already sorted (base case)
+    print("Low", low, "High", high)
+    if len(items[low:high + 1]) == 1:
+        return items
+    if low < high:
+        # Partition items in-place around a pivot and get index of pivot
+        p = partition(items, low, high)
+        print("p", p)
+
+        # Sort each sublist range by recursively calling quick sort
+        print(items)
+        print("Sorting low")
+        quick_sort(items, low, p - 1)
+        print("Sorting high")
+        quick_sort(items, p + 1, high)
+        print("Returning", items[low:high + 1])
