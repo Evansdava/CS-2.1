@@ -96,8 +96,8 @@ def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
     Best case running time: O(1) if list is only one element
-    Worst case running time: O(n log n) as it repeatedly splits the array and
-                             iterates over each split
+    Worst case running time: O(n**2) if it's in reverse sorted order, as each
+                             recursion only splits one element off
     Memory usage: O(log n) As each recursion defines set variables
     """
     # Check if high and low range bounds have default values (not given)
