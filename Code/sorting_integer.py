@@ -33,14 +33,22 @@ def bucket_sort(numbers, num_buckets=10):
                   each element and each bucket
     Memory usage: O(n+k) as it declares buckets and adds each element to them
     """
+    # Base case
+    if len(numbers) == 0:
+        return
+
     # Initialize max value and bucket list
     max_value = max(numbers)
-    buckets = [[]] * num_buckets + 1
+    buckets = [[] * num_buckets]
+    print(buckets)
 
     # Sort all numbers into appropriate buckets
     for num in numbers:
-        buckets[num * len(buckets) / (max_value + 1)].append(num)
+        print(num)
+        print(buckets)
+        buckets[num * len(buckets) // (max_value + 1)].append(num)
 
+    print(buckets)
     # Clear original list
     numbers[:] = []
     # Sort each bucket and append it to the list
