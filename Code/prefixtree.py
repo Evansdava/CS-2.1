@@ -136,8 +136,8 @@ class PrefixTree:
             visit(node)
         else:
             for child in node.children:
-                self._traverse(node.get_child(child), prefix + node.character,
-                               visit)
+                self._traverse(node.get_child(child),
+                               prefix + node.character, visit)
             visit(node)
 
 
